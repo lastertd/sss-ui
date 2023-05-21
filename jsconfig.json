@@ -6,7 +6,7 @@
     "moduleResolution": "node",
     "paths": {
       "@/*": [
-        "src/*"
+        "packages/*"
       ]
     },
     "lib": [
@@ -15,5 +15,11 @@
       "dom.iterable",
       "scripthost"
     ]
-  }
+  },
+  "include": [
+    "examples/**/*.js",
+    "examples/**/*.vue",
+    "packages/**/*.js",
+    "packages/**/*.vue"
+  ]
 }
