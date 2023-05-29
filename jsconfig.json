@@ -4,11 +4,6 @@
     "module": "esnext",
     "baseUrl": "./",
     "moduleResolution": "node",
-    "paths": {
-      "@/*": [
-        "packages/*"
-      ]
-    },
     "lib": [
       "esnext",
       "dom",

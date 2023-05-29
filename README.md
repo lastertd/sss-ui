@@ -1,24 +1,52 @@
 # sss-ui
 
-## Project setup
-```
-npm install
-```
+**目前仍处于开发阶段👻**
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
 
-### Compiles and minifies for production
-```
-npm run build
-```
 
-### Lints and fixes files
-```
-npm run lint
-```
+## setup
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+~~~
+npm i sss-ui
+~~~
+
+
+
+## use
+
+~~~js
+import Vue from 'vue'
+
+import sssui from "sss-ui"
+Vue.use(sssui);
+
+
+import App from './App.vue'
+new Vue({
+  render: h => h(App),
+}).$mount('#app')
+~~~
+
+或者按需引入
+
+~~~js
+import Vue from 'vue'
+
+import {button,toolTip} from "sss-ui"
+Vue.component(button.name, button);
+Vue.component(toolTip.name, toolTip);
+
+Vue.config.productionTip = false
+
+import App from './App.vue'
+new Vue({
+  render: h => h(App),
+}).$mount('#app')
+~~~
+
+
+
+**请保证sssui在App之前引入**
+
+
+
