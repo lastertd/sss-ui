@@ -6,14 +6,23 @@
 <template>
 
     <sss-popper
-        :disabled="disabled"
-        :force-show="vis"
-        :trigger="trigger"
+        ref="outer"
         :placement="placement"
         :offset="offset"
+        :trigger="trigger"
+        :delay-on-mouse-out="delayOnMouseOut"
+        :delay-on-mouse-in="delayOnMouseIn"
+        :show-arrow="showArrow"
+        :transition="transition"
+        :disabled="disabled"
+        :dark="dark"
+        :maxwidth="maxwidth"
+        :minwidth="minwidth"
+        :append-to-body="appendToBody"
         :gpu-acceleration="gpuAcceleration"
-        :max-width="maxWidth"
-        :minwidth="minWidth"
+
+        @show="$emit('show')"
+        @hide="$emit('hide')"
 
     >
         <slot slot="reference"></slot>
@@ -29,12 +38,12 @@
             <div class="sss-popconfirm-btn-list">
                 <sss-button class="sss-confirm-cancel-btn" style="font-size:10px"
                             :type="canclBtnType"
-                            @click.stop="__cancel()"
+                            @click.stop="handleCancel()"
                 >{{ cancelBtnText }}
                 </sss-button>
                 <sss-button class="sss-confirm-confirm-btn" style="font-size: 10px"
                             :type="confirmBtnType"
-                            @click.stop="__confirm()"
+                            @click.stop="handleConfirm()"
 
                 >{{ confirmBtnText }}
                 </sss-button>
@@ -59,20 +68,45 @@ export default {
             type: String,
             default: "bottom"
         },
-        trigger: {
-            type: String,
-            default: "clickToOpen",
-
-        },
         offset: {
             type: Number,
-            default: 10
+            default: 13
         },
-        gpuAcceleration: {
+        trigger: {
+            type: String,
+            default: "clickToOpen"
+        },
+        delayOnMouseOut: {
+            type: Number,
+            default: 300,
+        },
+        delayOnMouseIn: {
+            type: Number,
+            default: 10,
+        },
+        showArrow: {
             type: Boolean,
             default: true
         },
+        transition: {
+            type: String,
+            default: 'fade',
+        },
         disabled: Boolean,
+        dark: Boolean,
+        maxwidth: {
+            type: String,
+            default: "2000px"
+        },
+        minwidth: {
+            type: String,
+            default: "0"
+        },
+        appendToBody: {
+            type: Boolean,
+            default: true
+        },
+        gpuAcceleration: Boolean,
         type: {
             type: String,
             default: "info",
@@ -83,7 +117,7 @@ export default {
         title: String,
         canclBtnType: {
             type: String,
-            default: "normal"
+            default: "text"
         },
         cancelBtnText: {
             type: String,
@@ -97,14 +131,6 @@ export default {
             type: String,
             default: "确认"
         },
-        maxWidth: {
-            type: String,
-            default: "2000px"
-        },
-        minWidth: {
-            type: String,
-            default: '250px'
-        }
 
 
     },
@@ -133,21 +159,23 @@ export default {
 
             }
         },
-        __cancel() {
-            this.vis = true;
-            this.$nextTick(() => {
-                this.vis = false
-            })
-
+        handleCancel() {
+            this.hide();
             this.$emit("cancel");
         },
-        __confirm() {
-            this.vis = true;
-            this.$nextTick(() => {
-                this.vis = false
-            })
-
+        handleConfirm() {
+            this.hide();
             this.$emit("confirm")
+        },
+
+        hide() {
+            this.$refs.outer.hide();
+        },
+        show() {
+            this.$refs.outer.show();
+        },
+        toggle() {
+            this.$refs.outer.toggle();
         }
 
     },
@@ -165,28 +193,34 @@ export default {
     display: flex;
     flex-flow: column nowrap;
     align-items: start;
+    font-size: 13px;
 
     & > .sss-popconfirm-title {
-        margin-top: 0;
+        margin-top: 10px;
         margin-bottom: 20px;
 
         & > .iconfont {
             background: white;
             border-radius: 50%;
             overflow: hidden;
-
-
         }
     }
 
-
+}
     .sss-popconfirm-btn-list {
+        font-size: inherit;
         display: flex;
         width: 100%;
         justify-content: end;
+        & > button {
+            padding: 4px 10px;
+            margin-left: 3px;
+            margin-right: 0;
+            &:after{
+                content: none!important;
+            }
+        }
 
     }
-;
-}
 
 </style>

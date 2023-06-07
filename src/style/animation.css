@@ -92,6 +92,23 @@
 }
 
 
+/*水平卷轴 方向默认向left收缩*/
+.sss-transition-scale-enter-active,
+.sss-transition-scale-leave-active {
+    transform: scale(1);
+    opacity: 1;
+    transform-origin: center 25%;
+    transition: transform 300ms cubic-bezier(0.23, 1, 0.72, 1),
+    opacity 300ms cubic-bezier(0.23, 1, 0.72, 1);
+}
+
+.sss-transition-scale-leave-to,
+.sss-transition-scale-enter {
+    transform: scale(.8);
+    opacity: 0;
+}
+
+
 
 
 /*msg类专用 淡入 + 下降*/

@@ -51,7 +51,7 @@ const notify= function({
             }
         })
         setTimeout(() => {
-            vm.close();
+            vm.hide();
         }, timeout)
     })
 

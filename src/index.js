@@ -19,6 +19,8 @@ import count from "../packages/count";
 import toolTip from "../packages/tool-tip";
 import popconfirm from "../packages/popconfirm";
 import row from "../packages/row"
+import popper from "../packages/popper";
+import messageBox from "../packages/messageBox";
 
 
 
@@ -36,6 +38,8 @@ const components = [
     toolTip,
     popconfirm,
     row,
+    popper,
+    messageBox,
 
 ]
 
@@ -81,6 +85,8 @@ export {
     toolTip,
     popconfirm,
     row,
+    popper,
+    messageBox,
 }
 
 export default {

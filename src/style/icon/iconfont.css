@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 4078839 */
-  src: url('iconfont.woff2?t=1684823231584') format('woff2'),
-       url('iconfont.woff?t=1684823231584') format('woff'),
-       url('iconfont.ttf?t=1684823231584') format('truetype');
+  src: url('iconfont.woff2?t=1686116607527') format('woff2'),
+       url('iconfont.woff?t=1686116607527') format('woff'),
+       url('iconfont.ttf?t=1686116607527') format('truetype');
 }
 
 .iconfont {
@@ -13,11 +13,31 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.sss-comps:before {
+  content: "\e730";
+}
+
+.sss-time-fill:before {
+  content: "\e65e";
+}
+
+.sss-user-fill:before {
+  content: "\e64d";
+}
+
+.sss-tag-fill:before {
+  content: "\e86e";
+}
+
+.sss-time:before {
+  content: "\e8b8";
+}
+
 .sss-star:before {
   content: "\e658";
 }
 
-.sss-fill-star:before {
+.sss-star-fill:before {
   content: "\e709";
 }
 
@@ -121,28 +141,28 @@
   content: "\e62e";
 }
 
-.sss-success:before {
-  content: "\e601";
-}
-
-.sss-error:before {
-  content: "\e614";
-}
-
-.sss-warn:before {
-  content: "\e60e";
-}
-
-.sss-info:before {
-  content: "\e6b8";
-}
-
 .sss-close:before {
   content: "\ee37";
 }
 
 .sss-gerenzhongxin-zhihui:before {
   content: "\e61e";
+}
+
+.sss-success:before {
+  content: "\ee3c";
+}
+
+.sss-error:before {
+  content: "\ee3d";
+}
+
+.sss-warn:before {
+  content: "\ee3e";
+}
+
+.sss-info:before {
+  content: "\ee3f";
 }
 
 .sss-loading:before {

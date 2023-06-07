@@ -10,6 +10,7 @@
         ]"
     >
         <sss-input
+            ref="ipt"
             :disabled="disabled"
             :value="value"
             :readonly="readonly"
@@ -50,7 +51,15 @@ export default {
     methods: {
         handleBlur(evt){
             const num = Number.parseInt(evt.target.value);
-            this.$emit('input',num)
+            if (this.min!==undefined && num < this.min ){
+                this.$refs.ipt.showLabel(`输入值不能小于${this.min}`);
+                return
+            }
+            if (this.max!==undefined && num > this.max ){
+                this.$refs.ipt.showLabel(`输入值不能大于${this.max}`);
+                return
+            }
+            this.$emit('input',num);
         },
         handleMinus() {
             if (!Number.isFinite(this.value)){
@@ -59,6 +68,8 @@ export default {
             if (!this.min || this.value - this.step >= this.min){
                 this.$emit('input', this.value - this.step)
             }
+
+            this.$refs.ipt.hiddenLabel();
         },
         handlePlus() {
             if (!Number.isFinite(this.value)){
@@ -67,6 +78,9 @@ export default {
             if (!this.max || this.value + this.step <= this.max){
                 this.$emit('input', this.value + this.step)
             }
+
+            this.$refs.ipt.hiddenLabel();
+
         },
 
     },
@@ -81,7 +95,7 @@ export default {
 @import "../../../src/style/variable.less";
 
 .sss-count {
-
+    max-width: 300px;
     &.is-disabled {
         pointer-events: none;
         cursor: auto;

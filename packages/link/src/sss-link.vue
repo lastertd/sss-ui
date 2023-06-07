@@ -34,7 +34,7 @@ export default {
 
 .sss-link-outer {
     font-size: inherit;
-    color: #1e90ff;
+    color: @color-blue;
     position: relative;
     text-decoration: none;
     display: flex;
@@ -61,7 +61,7 @@ export default {
         position: absolute;
         top: 100%;
         left: 0;
-        background-color: #1e90ff;
+        background-color: @color-blue;
     }
 
 }

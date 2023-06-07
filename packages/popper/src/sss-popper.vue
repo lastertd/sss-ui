@@ -2,6 +2,7 @@
 <!--这些具有位于文档中的触发器的组件-->
 <template>
     <Popper
+        ref="outer"
         :trigger="trigger"
         :options="{
             placement: placement,
@@ -15,8 +16,8 @@
             },
 
         }"
-        @hide="__hide()"
-        @show="__show()"
+        @hide="handleHide()"
+        @show="handleShow()"
 
         :force-show="forceShow"
         :visible-arrow="showArrow"
@@ -52,7 +53,7 @@
 
 
 <script>
-import Popper from "vue-popperjs";
+import Popper from "../../../src/utils/vue-popper";
 import {popupManager} from "../../../src/index"
 
 export default {
@@ -88,7 +89,6 @@ export default {
             default: 'fade',
         },
         disabled: Boolean,
-        forceShow: Boolean,
         dark: Boolean,
         maxwidth: {
             type: String,
@@ -102,10 +102,7 @@ export default {
             type: Boolean,
             default: true
         },
-        gpuAcceleration: {
-            type: Boolean,
-            default: false
-        }
+        gpuAcceleration: Boolean,
 
 
     },
@@ -113,11 +110,12 @@ export default {
         return {
             displayStatus: false,
             isFirstRender: true,
+            forceShow:false,
         }
     },
     methods: {
 
-        __show() {
+        handleShow() {
             this.displayStatus = true;
             this.$refs.popper.style.zIndex = popupManager.nextZindex();
             if (this.isFirstRender) {
@@ -129,18 +127,25 @@ export default {
 
         },
 
-        __hide() {
+        handleHide() {
             this.displayStatus = false;
             this.$emit("hide");
         },
 
-        __toggle() {
-            if (this.displayStatus) {
-                this.__hide();
-            } else {
-                this.__show();
-            }
+
+        hide(){
+            this.$refs.outer.doClose();
+        },
+        show(){
+          this.$refs.outer.doShow();
+        },
+        toggle(){
+            this.$refs.outer.doToggle();
         }
+
+
+
+
     },
 }
 </script>
@@ -173,12 +178,14 @@ export default {
 
 }
 
+
+
 .sss-popper .popper__arrow {
     background: inherit;
 
     width: 10px;
     height: 10px;
-    border: solid 1px @color-gray;
+    border: solid 2px @color-gray;
     border-left: none;
     border-top: none;
     user-select: none;

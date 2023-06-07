@@ -11,13 +11,13 @@
                 class="sss-msg-box-mark"
                 ref="mark"
                 @click="clickMark()"
-                v-if="flag && showMark"
+                v-if="displayStatus && showMark"
             >
 
             </div>
         </transition>
 
-        <transition :name="tra">
+        <transition :name="transition">
             <div
                 class="sss-msg-box-inner test"
 
@@ -25,7 +25,7 @@
                 v-on="$listeners"
                 ref="inner"
                 @click.stop
-                v-if="flag"
+                v-if="displayStatus"
                 :data-type="type"
             >
                 <!--                头部-->
@@ -35,7 +35,7 @@
                             <span v-if="__checkType()" class="iconfont" :class="__getType()"></span>
                             <h3>{{ title }}</h3>
                         </div>
-                        <span class="iconfont sss-close" @click="close()"></span>
+                        <span class="iconfont sss-close" @click="hide()"></span>
                     </div>
                 </slot>
 
@@ -53,12 +53,12 @@
                     <div class="sss-msg-box-inner__footer">
                         <sss-button class="sss-msg-box-cancel-btn" style="font-size: 7px"
                                     :type="canclBtnType"
-                                    @click.stop="cancel"
+                                    @click.stop="handleCancel"
                         >{{ cancelBtnText }}
                         </sss-button>
                         <sss-button class="sss-msg-box-confirm-btn" style="font-size: 7px"
                                     :type="confirmBtnType"
-                                    @click.stop="confirm"
+                                    @click.stop="handleConfirm"
 
                         >{{ confirmBtnText }}
                         </sss-button>
@@ -105,7 +105,7 @@ export default {
         },
         canclBtnType: {     //取消按钮 类型
             type: String,
-            default: "normal"
+            default: "default"
         },
         cancelBtnText: {   //取消按钮 文本
             type: String,
@@ -141,7 +141,7 @@ export default {
             type: Boolean,
             default: true
         },
-        tra: {
+        transition: {
             type: String,
             default: "sss-transition-msg-fadeDown"
         },
@@ -150,7 +150,7 @@ export default {
 
     data() {
         return {
-            flag: false, //标志 展示
+            displayStatus: false, //标志 展示
             isFirstRender: true
         }
     },
@@ -191,7 +191,7 @@ export default {
 
         __sroll() {
             if (this.forbiddenScroll) {
-                if (this.flag) {
+                if (this.displayStatus) {
                     scrollManager.increase();
                 } else {
                     scrollManager.decrease();
@@ -199,23 +199,23 @@ export default {
             }
         },
 
-        cancel() {      //按下取消按钮时的回调
-            this.flag = false;
+        handleCancel() {      //按下取消按钮时的回调
+            this.displayStatus = false;
             this.__sroll();
             this.$emit("cancel");
         },
-        confirm() {     //按下确认按钮时的回调
-            this.flag = false;
+        handleConfirm() {     //按下确认按钮时的回调
+            this.displayStatus = false;
             this.__sroll();
 
             this.$emit("confirm");
 
         },
-        close() {
+        hide() {
             const self = this;
 
             function next() {   //真正执行关闭
-                self.flag = false;
+                self.displayStatus = false;
                 self.__sroll();
 
                 self.$emit("close");
@@ -231,7 +231,7 @@ export default {
 
         },
         show() {
-            this.flag = true;
+            this.displayStatus = true;
             this.__sroll();
             this.$refs.outer.style.zIndex = popupManager.nextZindex();
             this.$emit("show")
@@ -243,14 +243,21 @@ export default {
 
             })
         },
+        toggle(){
+            if (this.displayStatus){
+                this.hide();
+            }else {
+                this.show();
+            }
+        },
         esc() {
             if (this.closeByEsc) {
-                this.close()
+                this.hide()
             }
         },
         clickMark() {
             if (this.closeByClickMark) {
-                this.close();
+                this.hide();
             }
 
         }
@@ -260,8 +267,8 @@ export default {
         this.esc = throttle(this.esc, this, 200);
         this.clickMark = throttle(this.clickMark, this, 200);
         this.clickMark = throttle(this.clickMark, this, 200);
-        this.cancel = throttle(this.cancel, this, 200);
-        this.confirm = throttle(this.confirm, this, 200);
+        this.handleCancel = throttle(this.handleCancel, this, 200);
+        this.handleConfirm = throttle(this.handleConfirm, this, 200);
         this.show = throttle(this.show, this, 200);
     }
 

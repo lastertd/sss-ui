@@ -21,7 +21,7 @@
     >
         <i class="sss-button-loading iconfont sss-loading" v-if="loading"></i>
         <i class="iconfont" :class="leftIcon" v-if="leftIcon && !loading"></i>
-        <span><slot></slot></span>
+        <span class="sss-button-text"><slot></slot></span>
         <i class="iconfont" :class="rightIcon" v-if="rightIcon && !loading"></i>
 
 
@@ -68,18 +68,20 @@ export default {
 
 <style lang="less">
 @import "../../../src/style/variable.less";
+
 .sss-button {
+    color: @color-black2;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     vertical-align: center;
 
-    margin: 0 5px;
+    margin: 0 3px;
     box-sizing: border-box;
     padding: 8px 20px;
-    border-radius: 3px;
+    border-radius: 6px;
     border: solid 1px @color-gray;
-    background: @color-white3;
+    background: white;
     font-size: inherit;
 
     transition: all .15s;
@@ -103,13 +105,13 @@ export default {
         bottom: -4px;
         left: -4px;
         right: -4px;
-        border: 2px solid @color-info;
-        border-radius: inherit;
+        border: 2px solid @color-gray;
+        border-radius: 8px;
     }
 
     //禁用
     &.is-disabled,
-    &.is-loading{
+    &.is-loading {
         pointer-events: none;
         user-select: none;
         opacity: 0.3;
@@ -137,7 +139,7 @@ export default {
             border-radius: inherit;
         }
 
-        & >* {
+        & > * {
             padding: 0 !important;
         }
     }
@@ -146,9 +148,11 @@ export default {
     &.sss-button-s {
         font-size: @font-size-s;
     }
+
     &.sss-button-m {
         font-size: @font-size-m;
     }
+
     &.sss-button-l {
         font-size: @font-size-l;
     }
@@ -160,6 +164,7 @@ export default {
 
     &:hover {
         background: darken(@color-white3, 5%);
+        color: @color-main;
 
         &:active {
             background: darken(@color-white3, 10%);
@@ -171,14 +176,14 @@ export default {
 
 .sss-button-main {
     background: @color-main;
-    color: @color-white2;
+    color: @color-white;
 
     //重写动画
     &:hover {
         background: darken(@color-main, -5%);
 
         &:active {
-            background: darken(@color-main, 10%);
+            background: darken(@color-main, 5%);
         }
     }
 
@@ -188,12 +193,12 @@ export default {
 
     //empty
     &.is-empty {
-        background: fadeout(@color-main, 80%);
+        background: lighten(@color-main,28%);
         color: @color-main;
 
         &:hover {
-            background: darken(@color-main, -5%);
-            color: @color-white2;
+            background: @color-main;
+            color: @color-white;
 
             &:active {
                 background: darken(@color-main, 5%);
@@ -206,7 +211,7 @@ export default {
 
 .sss-button-info {
     background: @color-info;
-    color: @color-white2;
+    color: @color-white;
     //重写动画
     &:hover {
         background: darken(@color-info, -5%);
@@ -226,8 +231,8 @@ export default {
         color: @color-info;
 
         &:hover {
-            background: darken(@color-info, -5%);
-            color: @color-white2;
+            background: @color-info;
+            color: @color-white;
 
             &:active {
                 background: darken(@color-info, 5%);
@@ -240,10 +245,10 @@ export default {
 
 .sss-button-warn {
     background: @color-warn;
-    color: @color-white2;
+    color: @color-white;
     //重写动画
     &:hover {
-        background: darken(@color-warn, -5%);
+        background: darken(@color-warn, -7%);
 
         &:active {
             background: darken(@color-warn, 5%);
@@ -255,12 +260,12 @@ export default {
     }
 
     &.is-empty {
-        background: fadeout(@color-warn, 80%);
+        background: fadeout(@color-warn, 85%);
         color: @color-warn;
 
         &:hover {
-            background: darken(@color-warn, -5%);
-            color: @color-white2;
+            background: @color-warn;
+            color: @color-white;
 
             &:active {
                 background: darken(@color-warn, 10%);
@@ -271,10 +276,10 @@ export default {
 
 .sss-button-error {
     background: @color-error;
-    color: @color-white2;
+    color: @color-white;
     //重写动画
     &:hover {
-        background: darken(@color-error, -5%);
+        background: darken(@color-error, -7%);
 
         &:active {
             background: darken(@color-error, 5%);
@@ -290,8 +295,8 @@ export default {
         color: @color-error;
 
         &:hover {
-            background: darken(@color-error, -5%);
-            color: @color-white2;
+            background: @color-error;
+            color: @color-white;
 
             &:active {
                 background: darken(@color-error, 5%);
@@ -300,7 +305,75 @@ export default {
     }
 }
 
-.sss-button-loading{
+.sss-button-cyan {
+    background: @color-blue;
+    color: @color-white;
+    //重写动画
+    &:hover {
+        background: darken(@color-blue, -7%);
+
+        &:active {
+            background: darken(@color-blue, 5%);
+        }
+    }
+
+    &:focus:after {
+        border-color: @color-blue;
+    }
+
+    &.is-empty {
+        background: fadeout(@color-blue, 80%);
+        color: @color-blue;
+
+        &:hover {
+            background: @color-blue;
+            color: @color-white;
+
+            &:active {
+                background: darken(@color-blue, 5%);
+            }
+        }
+    }
+}
+
+.sss-button-dark {
+    background: @color-black;
+    color: @color-white;
+    //重写动画
+    &:hover {
+        background: darken(@color-black, -20%);
+
+
+        &:active {
+            background: darken(@color-black, 5%);
+        }
+    }
+
+    &:focus:after {
+        border-color: @color-black;
+    }
+
+    &.is-empty {
+        background: fadeout(@color-black, 90%);
+        color: @color-black;
+
+        &:hover {
+            background: @color-black;
+            color: @color-white;
+
+            &:active {
+                background: darken(@color-black, 5%);
+            }
+        }
+    }
+}
+
+.sss-button-text:empty {
+    padding: 0;
+
+}
+
+.sss-button-loading {
     animation: sss-rotate 2s linear infinite;
 
 }

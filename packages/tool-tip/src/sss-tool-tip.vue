@@ -1,14 +1,23 @@
 <template>
 
     <sss-popper
-        :disabled="disabled"
-        :trigger="trigger"
+        ref="outer"
         :placement="placement"
+        :offset="offset"
+        :trigger="trigger"
+        :delay-on-mouse-out="delayOnMouseOut"
+        :delay-on-mouse-in="delayOnMouseIn"
+        :show-arrow="showArrow"
+        :transition="transition"
+        :disabled="disabled"
         :dark="dark"
         :maxwidth="maxwidth"
-        :transition="transition"
-        :gpu-acceleration="true"
-        :offset="offset"
+        :minwidth="minwidth"
+        :append-to-body="appendToBody"
+        :gpu-acceleration="gpuAcceleration"
+
+        @show="$emit('show')"
+        @hide="$emit('hide')"
     >
 
         <span ref="popper" slot="popper">{{ title }}</span>
@@ -20,45 +29,70 @@
 
 <script>
 import sssPopper from "../../popper/src/sss-popper";
+
+
 export default {
     name: "sss-tool-tip",
-    components:{sssPopper},
+    components: {sssPopper},
     props: {
         placement: {
             type: String,
-            default: "top"
+            default: "bottom"
         },
-        dark: {
-            type: Boolean,
-            default: false,
+        offset: {
+            type: Number,
+            default: 13
         },
         trigger: {
             type: String,
-            default: "hover",
-            validator(value) {
-                return ['hover', 'clickToOpen'].indexOf(value) !== -1;
-            }
+            default: "hover"
         },
-        disabled: {
+        delayOnMouseOut: {
+            type: Number,
+            default: 300,
+        },
+        delayOnMouseIn: {
+            type: Number,
+            default: 10,
+        },
+        showArrow: {
             type: Boolean,
-            default: false
+            default: true
         },
-        title: {
+        transition: {
             type: String,
-            default: ""
+            default: 'fade',
         },
+        disabled: Boolean,
+        dark: Boolean,
         maxwidth: {
             type: String,
             default: "2000px"
         },
-        transition: {
+        minwidth: {
             type: String,
-            default: "fade"
+            default: "0"
         },
-        offset: {
-            type: Number,
-            default: 10
+        appendToBody: {
+            type: Boolean,
+            default: true
+        },
+        gpuAcceleration: Boolean,
+        title: String,
+
+    },
+    methods: {
+
+        hide() {
+            this.$refs.outer.hide();
+        },
+        show() {
+            this.$refs.outer.show();
+        },
+        toggle() {
+            this.$refs.outer.toggle();
         }
+
 
     },
 

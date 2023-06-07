@@ -6,6 +6,41 @@
   "description": "sssui组件库",
   "glyphs": [
     {
+      "icon_id": "7193681",
+      "name": "组件",
+      "font_class": "comps",
+      "unicode": "e730",
+      "unicode_decimal": 59184
+    },
+    {
+      "icon_id": "29949",
+      "name": "time_fill",
+      "font_class": "time-fill",
+      "unicode": "e65e",
+      "unicode_decimal": 58974
+    },
+    {
+      "icon_id": "963411",
+      "name": "user",
+      "font_class": "user-fill",
+      "unicode": "e64d",
+      "unicode_decimal": 58957
+    },
+    {
+      "icon_id": "4936683",
+      "name": "tag-fill",
+      "font_class": "tag-fill",
+      "unicode": "e86e",
+      "unicode_decimal": 59502
+    },
+    {
+      "icon_id": "11372699",
+      "name": "时间",
+      "font_class": "time",
+      "unicode": "e8b8",
+      "unicode_decimal": 59576
+    },
+    {
       "icon_id": "564943",
       "name": "star",
       "font_class": "star",
@@ -15,7 +50,7 @@
     {
       "icon_id": "7239563",
       "name": "star",
-      "font_class": "fill-star",
+      "font_class": "star-fill",
       "unicode": "e709",
       "unicode_decimal": 59145
     },
@@ -195,34 +230,6 @@
       "unicode_decimal": 58926
     },
     {
-      "icon_id": "17700",
-      "name": "成功",
-      "font_class": "success",
-      "unicode": "e601",
-      "unicode_decimal": 58881
-    },
-    {
-      "icon_id": "784054",
-      "name": "error-filling",
-      "font_class": "error",
-      "unicode": "e614",
-      "unicode_decimal": 58900
-    },
-    {
-      "icon_id": "936705",
-      "name": "感叹号",
-      "font_class": "warn",
-      "unicode": "e60e",
-      "unicode_decimal": 58894
-    },
-    {
-      "icon_id": "1390907",
-      "name": "疑问",
-      "font_class": "info",
-      "unicode": "e6b8",
-      "unicode_decimal": 59064
-    },
-    {
       "icon_id": "27402514",
       "name": "叉",
       "font_class": "close",
@@ -235,6 +242,34 @@
       "font_class": "gerenzhongxin-zhihui",
       "unicode": "e61e",
       "unicode_decimal": 58910
+    },
+    {
+      "icon_id": "35871576",
+      "name": "成功-copy",
+      "font_class": "success",
+      "unicode": "ee3c",
+      "unicode_decimal": 60988
+    },
+    {
+      "icon_id": "35871582",
+      "name": "error-filling-copy",
+      "font_class": "error",
+      "unicode": "ee3d",
+      "unicode_decimal": 60989
+    },
+    {
+      "icon_id": "35871584",
+      "name": "感叹号-copy",
+      "font_class": "warn",
+      "unicode": "ee3e",
+      "unicode_decimal": 60990
+    },
+    {
+      "icon_id": "35871588",
+      "name": "疑问-copy",
+      "font_class": "info",
+      "unicode": "ee3f",
+      "unicode_decimal": 60991
     },
     {
       "icon_id": "10232771",

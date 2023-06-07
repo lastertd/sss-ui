@@ -14,7 +14,7 @@ function isComponentNode(VNode){
  * @return {string}
  */
 function whatIs(variable) {
-    return Object.prototype.toString.call(variable).match(/\[object (\w+)]/)[1].toLowerCase();
+    return Object.prototype.toString.call(variable).slice(8,-1).toLowerCase();
 }
 
 

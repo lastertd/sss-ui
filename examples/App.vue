@@ -1,39 +1,55 @@
 <template>
     <div id="app">
+        <sss-button
+            type="main"
+            @click="() => {
+                this.$refs.test.show();
+            }"
+        >
+            click me
+        </sss-button>
 
+        <sss-message-box
+            ref="test"
+            show-mark
+            forbidden-scroll
+            :before-close="(next) => {
+                next();
+            }"
+        >
 
-        <sss-input v-model="str"></sss-input>
-        <sss-count v-model="str" readonly></sss-count>
-
-
-
-
-
-        <div style="height: 2000px"></div>
-
+        </sss-message-box>
     </div>
 </template>
 
+
 <script>
+
 
 export default {
     name: 'App',
     data() {
         return {
-            str:0
+            str: 0
         }
     },
-    methods:{
-        print(va){
-            console.log("print: ",va);
+    methods: {
+        handleCancel() {
+            this.$notify({
+                title: '删除失败',
+                content: '用户取消了删除',
+                type: 'error'
+            })
         },
-        notify(title, content, type){
-            this.$message({
-                text:title,
-            });
-        }
-    }
+        handleConfirm() {
+            this.$notify({
+                title: '删除成功',
+                content: '用户确认了删除',
+                type: 'success'
+            })
 
+        }
+    },
 
 
 }

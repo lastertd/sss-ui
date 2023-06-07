@@ -34,7 +34,7 @@ const $message = function ({
             messageManager.push(vm, offset);
         })
         setTimeout(() => {
-            vm.close();
+            vm.hide();
         }, timeout)
     })
 
