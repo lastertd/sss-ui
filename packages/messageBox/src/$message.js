@@ -16,7 +16,7 @@ const $message = function ({
             showHeader: false,
             showFooter: false,
             content: text,
-            tra: "sss-transition-msg-fadeDown",
+            transition: "sss-transition-msg-fadeDown",
             type: type
 
         },

@@ -159,6 +159,11 @@ export default {
 
 }
 
+.sss-button-text:empty {
+    padding: 0;
+
+}
+
 //类型
 .sss-button-default {
 
@@ -367,11 +372,12 @@ export default {
         }
     }
 }
-
-.sss-button-text:empty {
-    padding: 0;
-
+.sss-button-txt{
+    border: none;
+    color: @color-main;
 }
+
+
 
 .sss-button-loading {
     animation: sss-rotate 2s linear infinite;

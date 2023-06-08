@@ -2,8 +2,9 @@ import "./style/animation.css"
 import "./style/icon/iconfont.css"
 
 import PopupManager from "./utils/dom/PopupManager";
-import notify from "../packages/messageBox/src/$notify";
-import message from "../packages/messageBox/src/$message";
+import $notify from "../packages/messageBox/src/$notify";
+import $message from "../packages/messageBox/src/$message";
+import $confirm from "../packages/messageBox/src/$confirm";
 
 
 import button from "../packages/button/index.js";
@@ -56,8 +57,9 @@ const install = function (Vue, options = {}){
     console.log(zindex)
     if (zindex) popupManager = new  PopupManager(zindex);
 
-    Vue.prototype.$notify = notify;
-    Vue.prototype.$message = message;
+    Vue.prototype.$notify = $notify;
+    Vue.prototype.$message = $message;
+    Vue.prototype.$confirm = $confirm;
 
 }
 

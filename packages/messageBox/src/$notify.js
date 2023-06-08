@@ -27,7 +27,7 @@ const notify= function({
             title: title,
             content: content,
             showFooter: false,
-            tra: "sss-transition-msg",
+            transition: "sss-transition-msg",
             type: type
 
         },

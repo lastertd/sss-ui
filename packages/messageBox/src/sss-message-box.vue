@@ -81,7 +81,7 @@ import {popupManager} from "../../../src/index";
 
 export default {
     name: "sss-message-box",
-    components:{sssButton},
+    components: {sssButton},
     inheritAttrs: false,
     props: {
         showMark: Boolean,
@@ -94,10 +94,7 @@ export default {
             type: String,
             default: "title"
         },
-        content: {
-            type: String,
-            default: 'hi this is msgBox default content'
-        },
+        content: String,
 
         showFooter: {
             type: Boolean,
@@ -146,6 +143,7 @@ export default {
             default: "sss-transition-msg-fadeDown"
         },
         type: String,
+        appendToBody:{type:Boolean, default:true}
     },
 
     data() {
@@ -239,14 +237,15 @@ export default {
                 this.$refs.outer.focus();
                 this.$refs.inner.style.top = this.top;
                 this.$refs.inner.style.width = this.width;
-
-
             })
+            if (this.appendToBody){
+                document.body.appendChild(this.$refs.outer)
+            }
         },
-        toggle(){
-            if (this.displayStatus){
+        toggle() {
+            if (this.displayStatus) {
                 this.hide();
-            }else {
+            } else {
                 this.show();
             }
         },
@@ -432,6 +431,20 @@ export default {
     }
 }
 
+.sss-msg-box__confirm{
+    & .sss-msg-box-inner__header{
+        margin-bottom: 40px;
+    }
+    & .sss-msg-box-inner__footer{
+        & > button {
+
+            &:after{
+                content: none!important;
+            }
+        }
+    }
+}
+
 /*msg类专用 */
 .sss-transition-msg-enter-active {
     transition: transform .25s ease-out;
@@ -442,23 +455,24 @@ export default {
 }
 
 .sss-transition-msg-enter {
-    transform: translateX(30px) scale(0);
+    transform: translateX(30px) scale(0) translateY(0);
 }
 
 .sss-transition-msg-leave-to {
     opacity: 0;
+    transform: translateY(0);
 }
 
 /*msg类专用 淡入 + 下降*/
 .sss-transition-msg-fadeDown-enter-active {
     transition: transform .25s ease-out,
-            opacity .25s ease-out;
+    opacity .25s ease-out;
 
 }
 
 .sss-transition-msg-fadeDown-leave-active {
     transition: transform .2s ease-out,
-            opacity .2s ease-out;
+    opacity .2s ease-out;
 
 }
 

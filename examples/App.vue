@@ -13,11 +13,9 @@
             ref="test"
             show-mark
             forbidden-scroll
-            :before-close="(next) => {
-                next();
-            }"
+            :before-close="func"
         >
-
+            <span slot="content">消息体</span>
         </sss-message-box>
     </div>
 </template>
@@ -34,20 +32,33 @@ export default {
         }
     },
     methods: {
+        handleClose() {
+            this.$confirm({
+                title: '触发了close事件',
+                type: 'info'
+            }).then(res => {
+                console.log(res)
+            })
+        },
         handleCancel() {
             this.$notify({
-                title: '删除失败',
-                content: '用户取消了删除',
-                type: 'error'
+                title: '触发了cancel事件',
+                type: 'success'
+
             })
         },
         handleConfirm() {
             this.$notify({
-                title: '删除成功',
-                content: '用户确认了删除',
+                title: '触发了confirm事件',
                 type: 'success'
-            })
 
+            })
+        },
+        func(next) {
+            this.$confirm({
+                title: '确定不是误触么？',
+                type: 'info'
+            }).then(() => next()).catch(() => {})
         }
     },
 
